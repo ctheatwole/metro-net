@@ -26,7 +26,7 @@ class CardSorter
         {"Spades",40}
     };
 
-    public List<Card> sortCards(List<Card> unsortedCards)
+    public List<Card> sortCards(List<Card> unsortedCards, Boolean ascending)
     {
         // For values, assume: 2 < 3 < 4 < 5 < 6 < 7 < 8 < 9 < J < Q < K < A
         // For suits, assume: Hearts < Diamonds < Clubs < Spades
@@ -42,7 +42,11 @@ class CardSorter
                 Card rightCard = unsortedCards[i];
                 int leftCardWeight = getCardWeight(leftCard.Value, leftCard.Suit);
                 int rightCardWeight = getCardWeight(rightCard.Value, rightCard.Suit);
-                if (leftCardWeight > rightCardWeight) {
+                
+                // Determine which direction to check in based on input flag
+                var swapNeeded = ascending ? leftCardWeight > rightCardWeight : leftCardWeight < rightCardWeight;
+                if (swapNeeded)
+                {
                     // need to switch the cards around
                     // assign left slot to right card
                     unsortedCards[i - 1] = rightCard;
@@ -55,7 +59,7 @@ class CardSorter
             }
         }
 		
-	return unsortedCards;
+		return unsortedCards;
     }
 
     public int getCardWeight(string val, string suit)
