@@ -55,7 +55,7 @@ class CardSorter
             }
         }
 		
-		return unsortedCards;
+	return unsortedCards;
     }
 
     public int getCardWeight(string val, string suit)
