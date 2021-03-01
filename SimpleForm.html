@@ -1,0 +1,88 @@
+<html>
+    <head>
+        <title>Team Introduction</title>
+    </head>
+    <body>
+        <h3>Let's do some introductions</h3>
+        <div id="intro-form-div">
+            <form id="intro-form">
+                <div>
+                    <label for="name">Name:</label>
+                    <input id="name" name="name" type="text" placeholder="John Doe"/>
+                </div>
+                <div>
+                    <label for="fun-fact">Fun fact about yourself:</label>
+                    <input id="fun-fact" name="fun-fact" type="text" placeholder="I like to play in the rain"/>
+                </div>
+                <div>
+                    <button type="submit">Introduce Yourself</button>
+                    <button type="reset">Reset</button>
+                </div>
+            </form>
+        </div>
+        <div id="intro-display-div" style="display: none;">
+            <div>
+                <p id="name-display">Name: <span id="name-span"></span></p>
+            </div>
+            <div>
+                <p id="fun-fact-display">Fun fact: <span id="fun-fact-span"></span></p>
+            </div>
+            <div>
+                <button id="restart-intro-btn" type="button">Introduce someone else</button>
+            </div>
+        </div>
+        
+        <script>
+            document.querySelector("#intro-form").addEventListener("submit", function(e) {
+                e.preventDefault();
+                var valid = validateForm();
+                var nameValue = document.getElementById("name").value;
+                var funFactValue = document.getElementById("fun-fact").value;
+                
+                if (valid) {
+                    console.log("Name: " + nameValue + ", Fun fact: " + funFactValue);
+                    hideFormShowDisplay(nameValue, funFactValue);
+                }
+            });
+
+            document.querySelector("#restart-intro-btn").addEventListener("click", function(e) {
+                hideDisplayShowForm();
+            });
+
+            function validateForm() {
+                var errors = "";
+
+                if (document.getElementById("name").value === "") {
+                    errors += "Name cannot be empty.\n";
+                }
+                if (document.getElementById("fun-fact").value === "") {
+                    errors += "Fun fact cannot be empty.\n";
+                }
+
+                if (errors !== "") {
+                    alert(errors);
+                    return 0;
+                } else {
+                    return 1;
+                }
+                
+            };
+        
+            function hideFormShowDisplay(name, funFact) {
+                document.getElementById("intro-form-div").style.display = "none";
+                document.getElementById("intro-display-div").style.display = "block";
+                // was not entirely sure how to set the text of a span element via js
+                //https://stackoverflow.com/questions/4784568/set-content-of-html-span-with-javascript
+                document.getElementById("name-span").textContent = name;
+                document.getElementById("fun-fact-span").textContent = funFact;
+            }
+        
+            function hideDisplayShowForm(){
+                document.getElementById("intro-form-div").style.display = "block";
+                document.getElementById("intro-display-div").style.display = "none";
+                document.getElementById("name").value = "";
+                document.getElementById("fun-fact").value = "";
+            }
+        </script>
+    </body>
+</html>
