@@ -1,37 +1,72 @@
 <html>
     <head>
         <title>Team Introduction</title>
+        <style>
+            #info-box {
+                display: inline-block;
+                background-color: lightgray;
+                padding: 12px;
+            }
+            #intro-form > div {
+                padding-top: 10px;
+            }
+            #intro-form > div > input {
+                width: 100%;
+            }
+            .button-div {
+                display: block;
+            }
+            .button-div > .reset-btn {
+                float: right;
+            }
+            button {
+                height: 40px;
+            }
+            input {
+                height: 30px;
+            }
+            .submit-btn {
+                background-color: rgb(9, 231, 9);
+            }
+            .reset-btn {
+                background-color: rgb(0, 136, 214);
+            }
+        </style>
     </head>
     <body>
-        <h3>Let's do some introductions</h3>
-        <div id="intro-form-div">
-            <form id="intro-form">
+        <div id="info-box">
+            <h1>Welcome to our team</h1>
+            <div id="intro-form-div">
+                <h2>Let's start with some introductions</h3>
+                <form id="intro-form">
+                    <div>
+                        <label for="name">Name:</label>
+                        <input id="name" name="name" type="text" placeholder="John Doe"/>
+                    </div>
+                    <div>
+                        <label for="fun-fact">Fun fact about yourself:</label>
+                        <input id="fun-fact" name="fun-fact" type="text" placeholder="I like to play in the rain"/>
+                    </div>
+                    <div class="button-div">
+                        <button class="submit-btn" type="submit">Introduce Yourself</button>
+                        <button class="reset-btn" type="reset">Cancel</button>
+                    </div>
+                </form>
+            </div>
+            <div id="intro-display-div" style="display: none;">
+                <h2>Thank you!</h2>
                 <div>
-                    <label for="name">Name:</label>
-                    <input id="name" name="name" type="text" placeholder="John Doe"/>
+                    <p id="name-display">Name: <span id="name-span"></span></p>
                 </div>
                 <div>
-                    <label for="fun-fact">Fun fact about yourself:</label>
-                    <input id="fun-fact" name="fun-fact" type="text" placeholder="I like to play in the rain"/>
+                    <p id="fun-fact-display">Fun fact: <span id="fun-fact-span"></span></p>
                 </div>
                 <div>
-                    <button type="submit">Introduce Yourself</button>
-                    <button type="reset">Reset</button>
+                    <button class="submit-btn" id="restart-intro-btn" type="button">Introduce someone else</button>
                 </div>
-            </form>
+            </div>
         </div>
-        <div id="intro-display-div" style="display: none;">
-            <div>
-                <p id="name-display">Name: <span id="name-span"></span></p>
-            </div>
-            <div>
-                <p id="fun-fact-display">Fun fact: <span id="fun-fact-span"></span></p>
-            </div>
-            <div>
-                <button id="restart-intro-btn" type="button">Introduce someone else</button>
-            </div>
-        </div>
-        
+
         <script>
             document.querySelector("#intro-form").addEventListener("submit", function(e) {
                 e.preventDefault();
